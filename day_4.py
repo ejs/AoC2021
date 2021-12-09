@@ -1,7 +1,6 @@
 bingo_data = open("input_4").readlines()
 
 calls = [int(c) for c in bingo_data[0].split(",")]
-print(calls)
 
 def parse_board(board):
     return [[int(c) for c in l.split()] for l in board]
@@ -36,6 +35,7 @@ for c in calls:
     called.add(c)
     for board in boards:
         if won(board, called):
+            print("First winner")
             print(c * sum(i for row in board for i in row if i not in called))
             break
     else:
@@ -51,11 +51,10 @@ for c in calls:
         last = live[0]
         break
 
-print(last)
 called = set()
 for c in calls:
     called.add(c)
     if won(last, called):
-        print(c, called)
+        print("Last winner")
         print(c * sum(i for row in last for i in row if i not in called))
         break
