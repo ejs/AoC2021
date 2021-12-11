@@ -10,16 +10,18 @@ def progress(octopi):
     height = len(octopi[0])
     new_world = [[o+1 for o in row] for row in octopi]
     flashes = 0
-    visit = [(x, y) for x in range(10) for y in range(10) if new_world[x][y] > 9]
-    while visit:
-        x, y = visit.pop()
-        if new_world[x][y] > 9:
-            new_world[x][y] = -10
-            flashes += 1
-            for nx, ny in neighbours(x, y, width, height):
-                new_world[nx][ny] += 1
-                visit.append((nx, ny))
-    new_world = [[max(0, o) for o in row] for row in new_world]
+
+    to_flash = {(x, y) for x, row in enumerate(new_world) for y, o in enumerate(row) if o > 9}
+    while to_flash:
+        x, y = to_flash.pop()
+        flashes += 1
+        for nx, ny in neighbours(x, y, width, height):
+            if new_world[nx][ny] == 0:
+                continue
+            new_world[nx][ny] += 1
+            if new_world[nx][ny] > 9 :
+                to_flash.add((nx, ny))
+        new_world[x][y] = 0
 
     return new_world, flashes
 
