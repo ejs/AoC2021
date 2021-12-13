@@ -14,11 +14,11 @@ for line in code:
 
 
 # follow fold instructions
-for instuction in code:
+for instruction in code:
 
     # this puts a virtual fold far off the paper on the other side
     # to simplify the later folding logic
-    description, _, line = instuction.partition("=")
+    description, _, line = instruction.partition("=")
     if description[-1] == "x":
         x_line, y_line = int(line), 2000
     elif description[-1] == "y":
