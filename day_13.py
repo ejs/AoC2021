@@ -29,4 +29,6 @@ for instuction in code:
 
 # display final state
 for y in range(max(y for (x, y) in paper)+1):
-    print("".join("•" if (x, y) in paper else " " for x in range(max(x for (x, y) in paper)+1)))
+    for x in range(max(x for (x, y) in paper)+1):
+        print("•" if (x, y) in paper else " ", end="")
+    print()
