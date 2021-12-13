@@ -3,15 +3,10 @@ from collections import Counter
 
 def neighbours(x, y):
     for dx, dy in ((-1, 0), (1, 0), (0, 1), (0, -1)):
-        if x+dx < 0:
-            continue  # off left
-        if x+dx >= 100:
-            continue  # off right
-        if y+dy < 0:
-            continue  # off bottom
-        if y+dy >= 100:
-            continue  # off top
-        yield x+dx, y+dy
+        if 0 <= x+dx < 100 and 0 <= y+dy < 100:
+            yield x+dx, y+dy
+
+
 world = []
 
 for line in open("input_9"):
