@@ -24,7 +24,7 @@ for instruction in code:
     elif description[-1] == "y":
         x_line, y_line = 2000, int(line)
 
-    paper = {(fold(x, x_line), fold(y, y_line)) for x, y in list(paper)}
+    paper = {(fold(x, x_line), fold(y, y_line)) for x, y in paper}
     print(len(paper))
 
 # display final state
